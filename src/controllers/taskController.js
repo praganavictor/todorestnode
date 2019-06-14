@@ -49,9 +49,35 @@ module.exports = {
   },
 
   async update(req, res) {
-    const task = await Task.findByIdAndUpdate(req.params.id, req.body, {
-      new: true
-    });
+    const { title, description, comments } = req.body;
+
+    const task = await Task.findByIdAndUpdate(
+      req.params.id,
+      title,
+      description,
+      {
+        new: true
+      }
+    );
+
+    task.comments = [];
+    await Comment.remove({ task: task._id });
+
+    await Promise.all(
+      comments.map(async comment => {
+        const taskComment = new Comment({
+          ...comment,
+          task: task._id,
+          assignedTo: req.userId
+        });
+
+        await taskComment.save();
+
+        task.comments.push(taskComment);
+      })
+    );
+
+    await task.save();
 
     return res.json(task);
   },
