@@ -1,29 +1,24 @@
 const mongoose = require("mongoose");
 
-const taskSchema = new mongoose.Schema({
-  title: {
+const commentSchema = new mongoose.Schema({
+  content: {
     type: String,
     required: true
   },
-  description: {
-    type: String,
+  task: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Task",
     required: true
   },
-  user: {
+  assignedTo: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
     required: true
   },
-  comments: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Comment"
-    }
-  ],
   createdAt: {
     type: Date,
     default: Date.now
   }
 });
 
-mongoose.model("Task", taskSchema);
+mongoose.model("Comment", commentSchema);
