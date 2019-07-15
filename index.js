@@ -10,12 +10,9 @@ app.use(express.json());
 // app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 
-mongoose.connect(
-  "mongodb+srv://admin:Pragana987@cluster0-pxfgd.azure.mongodb.net/test?retryWrites=true&w=majority",
-  {
-    useNewUrlParser: true
-  }
-);
+mongoose.connect(process.env.MONGO_URL, {
+  useNewUrlParser: true
+});
 mongoose.set("useCreateIndex", true);
 
 requireDir("./src/models");
