@@ -10,9 +10,12 @@ app.use(express.json());
 // app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 
-mongoose.connect("mongodb://localhost:27017/todorest", {
-  useNewUrlParser: true
-});
+mongoose.connect(
+  "mongodb://localhost:27017/todorest",
+  {
+    useNewUrlParser: true
+  }
+);
 mongoose.set("useCreateIndex", true);
 
 requireDir("./src/models");
