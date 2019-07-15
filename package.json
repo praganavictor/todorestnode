@@ -5,6 +5,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "nodemon index.js --ignore __tests__",
+    "start": "node index.js",
     "test": "jest"
   },
   "dependencies": {
