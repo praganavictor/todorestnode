@@ -11,7 +11,7 @@ app.use(express.json());
 app.use(cors());
 
 mongoose.connect(
-  "mongodb://localhost:27017/todorest",
+  "mongodb+srv://admin:Pragana987@cluster0-pxfgd.azure.mongodb.net/test?retryWrites=true&w=majority",
   {
     useNewUrlParser: true
   }
